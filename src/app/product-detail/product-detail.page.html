@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-back-button defaultHref="/"></ion-back-button>
+    <ion-title>{{product_detail?.attributes?.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="welcome-card">
+    <ion-img src= "http://localhost:5003/{{product_detail?.image}}"></ion-img>
+    <ion-card-header>
+      <ion-card-subtitle>{{product_detail?.attributes?.display_price}}</ion-card-subtitle>
+      <ion-card-title>{{product_detail?.attributes?.name}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{product_detail?.attributes?.description}}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

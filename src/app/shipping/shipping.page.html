@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>shipping</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="shippingForm" (ngSubmit)="onSubmit()">
+    
+    <h2>Order Shipping Info</h2>
+    <div formGroupName="order">
+      <ion-item>
+        <ion-input formControlName="email" placeholder="email"></ion-input> 
+      </ion-item>
+      <div formGroupName="ship_address_attributes">
+        <ion-item><ion-input formControlName="firstname" placeholder="firstname"></ion-input></ion-item>
+        <ion-item><ion-input formControlName="lastname" placeholder="lastname"></ion-input></ion-item>
+        <ion-item><ion-input formControlName="address1" placeholder="address1"></ion-input></ion-item>
+        <ion-item><ion-input formControlName="address2" placeholder="address2"></ion-input></ion-item>
+        <ion-item><ion-input formControlName="city" placeholder="city"></ion-input></ion-item>
+        <ion-item><ion-input formControlName="phone" placeholder="phone"></ion-input></ion-item>
+        <ion-item><ion-input formControlName="zipcode" placeholder="zipcode"></ion-input></ion-item>
+        <ion-item><ion-input formControlName="state_name" placeholder="state_name"></ion-input></ion-item>
+        <ion-item><ion-input formControlName="country_iso" placeholder="country_iso"></ion-input></ion-item>
+      </div>
+      <div formArrayName="payments_attributes">
+        
+      </div>
+<!-- 
+      <div formArrayName="payments_attributes">
+        <div *ngFor="let payments_attribute of payments_attributes.controls; let j=index">
+          <div [formGroupName]="j">
+            <label class="center-block">Payment Method:
+              <select class="form-control" [formControlName]="payment_method_id">
+                <option *ngFor="let payment_method of payment_methods" [ngValue]="payment_method.id">{{payment_method.attributes.name}}</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </div> -->
+    </div>
+
+    <h2>Payment Info</h2>
+    <div formGroupName="payment_source">
+      <div formGroupName="2">
+        <ion-item><ion-input formControlName="number" placeholder="number"></ion-input></ion-item>
+        <ion-item><ion-input formControlName="month" placeholder="month"></ion-input></ion-item>
+        <ion-item><ion-input formControlName="year" placeholder="year"></ion-input></ion-item>
+        <ion-item><ion-input formControlName="verification_value" placeholder="verification_value"></ion-input></ion-item>
+        <ion-item><ion-input formControlName="name" placeholder="name"></ion-input></ion-item>
+      </div>
+    </div>
+    <ion-button type="submit">Submit</ion-button>
+ </form>
+</ion-content>

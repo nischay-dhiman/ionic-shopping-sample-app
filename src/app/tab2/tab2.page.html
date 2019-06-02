@@ -1,9 +1,25 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Two
+      Cart Total: {{cart_details?.display_total}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <ion-row>
+    <ion-card class="card" style="width: 100%" *ngFor="let product of cart_products_list">
+      <!-- <ion-img src= "http://localhost:5003/{{product.image}}"  [routerLink]="['/', 'products', product.id]"></ion-img> -->
+      <ion-card-header  [routerLink]="['/', 'products', product.id]" >
+        <ion-card-subtitle>{{product.attributes.display_price}}</ion-card-subtitle>
+        <ion-card-title>{{product.attributes.name}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <!-- <ion-button expand="block" color="danger"  (click)=addToCart(product.id)>View Product</ion-button> -->
+      </ion-card-content>
+    </ion-card>
+  </ion-row>
+  <ion-row *ngIf="cart_products_list?.length>0">
+    <ion-button expand="full" color="success"  (click)=checkout()>Place Order</ion-button>
+  </ion-row>
+</ion-content>

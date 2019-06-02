@@ -1,9 +1,19 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Three
+      My Orders
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+    <ion-row>
+      <ion-card class="card" style="width: 100%" *ngFor="let order of order_list">
+        <ion-card-header>
+          <ion-card-subtitle>{{order.attributes.display_total}}</ion-card-subtitle>
+          <ion-card-title>{{order.attributes.number}}</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </ion-row>
+  </ion-content>
+  

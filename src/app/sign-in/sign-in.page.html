@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>sign-in</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="credentialsForm" (ngSubmit)="onSignIn()">
+    <ion-input formControlName="username" placeholder="username"></ion-input>
+    <ion-input type="password" formControlName="password" placeholder="password"></ion-input> 
+    <ion-button type="submit" (onclick)="onSignIn()">Submit</ion-button>
+ </form>
+</ion-content>
