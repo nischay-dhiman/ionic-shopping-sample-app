@@ -1,15 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
-import { makeClient } from '@spree/storefront-api-v2-sdk/dist/client'
 import { NavController } from '@ionic/angular';
 
-const client = makeClient({
-  // host: 'http://localhost:5003'
-  // host: 'http://172.16.11.79:5003'
-  host: 'http://localhost:5003'
-  // host: 'http://172.20.10.3:5003'
-})
+import * as Constants from '../../constants';
 
 @Component({
   selector: 'app-shipping',
@@ -20,17 +14,12 @@ export class ShippingPage implements OnInit {
 
   shippingForm: FormGroup;
   payment_methods: any;
-  payment_method_id: string;
+  payment_method_id = 2;
   constructor(
     public navCtrl: NavController,
     private formBuilder: FormBuilder,
   ) {
-    client.checkout.paymentMethods({ 'bearerToken': localStorage.bearerToken }).then(
-      (data) =>{
-        this.payment_methods = data.success().data
-      }
-    )
-
+    
     this.shippingForm = this.formBuilder.group({
       order: this.formBuilder.group({
         email: ["nischay.dhiman@gmail.com"],
@@ -47,12 +36,12 @@ export class ShippingPage implements OnInit {
         }),
         payments_attributes: this.formBuilder.array([
           this.formBuilder.group({
-            payment_method_id: [2] // or directly 2
+            payment_method_id: this.payment_method_id
           })
         ]),
       }),
       payment_source: this.formBuilder.group({
-          2: this.formBuilder.group({
+        [this.payment_method_id] : this.formBuilder.group({
           number: ["4111111111111111"],
           month: ["01"],
           year: ["2024"],
@@ -68,11 +57,11 @@ export class ShippingPage implements OnInit {
 
   onSubmit() {
     let orderDetails = this.shippingForm.value
-    client.checkout.orderUpdate({ 'bearerToken': localStorage.bearerToken }, orderDetails).then(
+    Constants.client.checkout.orderUpdate({ 'bearerToken': localStorage.bearerToken }, orderDetails).then(
       (data) => {
-        client.checkout.advance({ 'bearerToken': localStorage.bearerToken }, orderDetails).then(
+        Constants.client.checkout.advance({ 'bearerToken': localStorage.bearerToken }, orderDetails).then(
           (data) => {
-            client.checkout.complete({ 'bearerToken': localStorage.bearerToken}).then(
+            Constants.client.checkout.complete({ 'bearerToken': localStorage.bearerToken}).then(
               () => 
               {
                 console.log('Order Placed Successfully')
@@ -84,5 +73,7 @@ export class ShippingPage implements OnInit {
       }
     )
   }
+
+  
 
 }

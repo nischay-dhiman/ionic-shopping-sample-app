@@ -8,10 +8,9 @@
 
 <ion-content>
   <ion-row>
-    <ion-card class="card" style="width: 40%" *ngFor="let product of products_list">
-      <!-- <ion-img src= "http://localhost:5003/{{product.image}}"  [routerLink]="['/', 'products', product.id]"></ion-img> -->
-      <ion-img src= "http://localhost:5003/{{product.image}}"  [routerLink]="['/', 'products', product.id]"></ion-img>
-      <ion-card-header  [routerLink]="['/', 'products', product.id]" >
+    <ion-card class="card" style="width: 40%" *ngFor="let product of productsList">
+      <ion-img src= "http://localhost:5003/{{product.image}}"></ion-img>
+      <ion-card-header>
         <ion-card-subtitle>{{product.attributes.display_price}}</ion-card-subtitle>
         <ion-card-title>{{product.attributes.name}}</ion-card-title>
       </ion-card-header>

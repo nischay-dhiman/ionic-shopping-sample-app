@@ -6,8 +6,17 @@
 
 <ion-content>
   <form [formGroup]="credentialsForm" (ngSubmit)="onSignIn()">
-    <ion-input formControlName="username" placeholder="username"></ion-input>
-    <ion-input type="password" formControlName="password" placeholder="password"></ion-input> 
-    <ion-button type="submit" (onclick)="onSignIn()">Submit</ion-button>
- </form>
+    <ion-card>
+      <ion-list inset>
+        <ion-item>
+          <ion-input formControlName="username" placeholder="username"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="password" formControlName="password" placeholder="password"></ion-input> 
+        </ion-item>
+      </ion-list>
+    </ion-card>
+    <ion-button type="submit" expand='full'>Submit</ion-button>
+  </form>
+
 </ion-content>

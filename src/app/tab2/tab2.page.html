@@ -19,7 +19,5 @@
       </ion-card-content>
     </ion-card>
   </ion-row>
-  <ion-row *ngIf="cart_products_list?.length>0">
-    <ion-button expand="full" color="success"  (click)=checkout()>Place Order</ion-button>
-  </ion-row>
+  <ion-button *ngIf="cart_products_list?.length>0" expand="full" color="success"  (click)=checkout()>Place Order</ion-button>
 </ion-content>
